@@ -394,9 +394,9 @@ body.silver {
 <button onclick="changeTheme('silver')">银灰</button>
 </div>
 <div class="stats" id="statsArea">
-<div class="stat"><div class="label">累计收益</div><div class="value" id="sum">¥0</div></div>
+<div class="stat"><div class="label">累计收益</div><div class="value" id="sum">$0</div></div>
 <div class="stat"><div class="label">收益天数</div><div class="value" id="days">0</div></div>
-<div class="stat"><div class="label">日均收益</div><div class="value" id="avg">¥0</div></div>
+<div class="stat"><div class="label">日均收益</div><div class="value" id="avg">$0</div></div>
 </div>
 <div class="month" id="monthNav">
 <button id="prev">‹</button>
@@ -410,7 +410,7 @@ body.silver {
 <div id="noteList" style="font-size:12px;line-height:22px;">暂无备注</div>
 </div>
 <div class="product-calculator" id="productCalculator">
-  <h3>💰 USDT 产品收益计算器</h3>
+  <h3>💎 USDT 产品收益计算器</h3>
 
   <div class="calc-field">
     <label for="calcProduct">选择产品</label>
@@ -524,7 +524,7 @@ box.appendChild(inp);grid.appendChild(box);
 calc();showNotes();
 }
 
-function calc(){var key=getKey(),sum=0,days=0;for(var i in income[key]||{}){if(income[key][i]){sum+=income[key][i];days++;}}document.getElementById("sum").innerHTML="¥"+sum.toLocaleString();document.getElementById("days").innerHTML=days;document.getElementById("avg").innerHTML="¥"+(days?Math.round(sum/days):0).toLocaleString();}
+function calc(){var key=getKey(),sum=0,days=0;for(var i in income[key]||{}){if(income[key][i]){sum+=income[key][i];days++;}}document.getElementById("sum").innerHTML="$"+sum.toLocaleString();document.getElementById("days").innerHTML=days;document.getElementById("avg").innerHTML="$"+(days?Math.round(sum/days):0).toLocaleString();}
 function openNote(day){currentDay=day;var key=getKey();document.getElementById("noteTitle").innerHTML=(now.getMonth()+1)+"月"+day+"日备注";document.getElementById("noteText").value=(notes[key]&&notes[key][day])||"";document.getElementById("mask").style.display="flex";}
 document.getElementById("saveNote").onclick=function(){var key=getKey(),txt=document.getElementById("noteText").value.trim();if(!notes[key])notes[key]={};if(txt)notes[key][currentDay]=txt;else delete notes[key][currentDay];try{localStorage.setItem("ps_notes",JSON.stringify(notes));}catch(e){}document.getElementById("mask").style.display="none";render();};
 document.getElementById("mask").onclick=function(e){if(e.target===this)this.style.display="none";};
