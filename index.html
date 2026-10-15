@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>磐石收益账本 V3.2</title>
+<title>顶峰收益账本 V3.2</title>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js">
 </script>
 <style>
@@ -217,8 +217,8 @@ body.silver #noteList,body.silver #noteList div{color:rgba(255,255,255,0.8);}
 <div class="wrap">
 <div class="card" id="capture">
 <div class="inner"></div>
-<div class="title">磐石收益账本</div>
-<div class="sub">财富记录 · 智能累计</div>
+<div class="title">顶峰收益账本</div>
+<div class="sub">财富记录 · 节点共建</div>
 <div class="theme" id="themeBtns">
 <button onclick="changeTheme('gold')">鎏金</button>
 <button onclick="changeTheme('jade')">翡翠</button>
@@ -269,7 +269,7 @@ body.silver #noteList,body.silver #noteList div{color:rgba(255,255,255,0.8);}
 </div>
 
 <div class="preview-overlay" id="previewOverlay">
-<img id="previewImage" src="" alt="磐石收益账本">
+<img id="previewImage" src="" alt="顶峰收益账本">
 <div class="preview-tip">⬇️ 长按图片保存到相册</div>
 <button class="preview-close" onclick="document.getElementById('previewOverlay').style.display='none'">关 闭</button>
 </div>
@@ -406,7 +406,7 @@ ctx.font="bold "+34*dpr+"px 'PingFang SC','Microsoft YaHei',sans-serif";
 var tg=ctx.createLinearGradient(0,ty+30*dpr,pW,ty+30*dpr);
 tg.addColorStop(0,M);tg.addColorStop(0.3,pt.light);tg.addColorStop(0.7,pt.light);tg.addColorStop(1,M);
 ctx.fillStyle=tg;
-ctx.fillText("磐 石 收 益 账 本",pW/2,ty+62*dpr);
+ctx.fillText("顶 峰 收 益 账 本",pW/2,ty+62*dpr);
 ctx.font="bold "+12*dpr+"px 'PingFang SC',sans-serif";
 ctx.fillStyle=rgba(mc.r,mc.g,mc.b,0.45);
 ctx.fillText(pt.name+" · "+pt.slogan,pW/2,ty+85*dpr);
@@ -435,7 +435,7 @@ document.getElementById("previewOverlay").style.display="flex";
 }else{
 var a=document.createElement("a");
 a.href=dataUrl;
-a.download="磐石收益账本_"+now.getFullYear()+"年"+(now.getMonth()+1)+"月.png";
+a.download="顶峰收益账本_"+now.getFullYear()+"年"+(now.getMonth()+1)+"月.png";
 document.body.appendChild(a);a.click();document.body.removeChild(a);
 }
 btn.innerHTML="📸 高清导出";
