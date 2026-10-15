@@ -245,26 +245,11 @@ body.silver #noteList,body.silver #noteList div{color:rgba(255,255,255,0.8);}
 <div class="note-title">📝 日期备注</div>
 <div id="noteList" style="font-size:12px;line-height:22px;">暂无备注</div>
 </div>
-<div class="calculator" id="calcArea">
-<div class="calc-title">📈 复利收益计算器</div>
-<input id="position" type="number" placeholder="输入本金金额">
-<select id="incomeType">
-<option value="0.018">动态收入（日息1.8%）</option>
-<option value="0.012">静态收入（日息1.2%）</option>
-</select>
-<input id="time" type="number" placeholder="输入天数">
-<button id="calcBtn">计算复利</button>
-<div class="calc-result">
-<div>总利润<span id="profit">¥0</span></div>
-<div>最终总额<span id="total">¥0</span></div>
-<div>日息率<span id="rateShow">0%</span></div>
-</div>
-</div>
 <div class="buttons" id="btnArea">
 <button class="export" id="export">📸 高清导出</button>
 <button class="clear" id="clear">清空</button>
 </div>
-<div class="brand">P A N S H I · WEALTH</div>
+<div class="brand">D I N G F E N G · WEALTH</div>
 </div>
 </div>
 
@@ -338,7 +323,6 @@ function showNotes(){var key=getKey(),box=document.getElementById("noteList"),ht
 document.getElementById("prev").onclick=function(){now.setMonth(now.getMonth()-1);render();};
 document.getElementById("next").onclick=function(){now.setMonth(now.getMonth()+1);render();};
 document.getElementById("clear").onclick=function(){if(confirm("确定清空本月收益？")){delete income[getKey()];try{localStorage.setItem("ps_income",JSON.stringify(income));}catch(e){}render();}};
-document.getElementById("calcBtn").onclick=function(){var money=Number(document.getElementById("position").value);var rate=Number(document.getElementById("incomeType").value);var days=Number(document.getElementById("time").value);if(!money||!days){alert("请输入本金和天数");return;}var total=money*Math.pow(1+rate,days);var profit=total-money;document.getElementById("profit").innerHTML="¥"+Math.round(profit).toLocaleString();document.getElementById("total").innerHTML="¥"+Math.round(total).toLocaleString();document.getElementById("rateShow").innerHTML=(rate*100).toFixed(1)+"%/天";};
 
 function getStatSum(){var k=getKey(),s=0;for(var i in income[k]||{})s+=income[k][i]||0;return s.toLocaleString();}
 function getStatDays(){var k=getKey(),d=0;for(var i in income[k]||{})if(income[k][i])d++;return d;}
@@ -352,15 +336,13 @@ btn.innerHTML="⏳";
 btn.disabled=true;
 
 var themeEl=document.getElementById("themeBtns");
-var calcEl=document.getElementById("calcArea");
 var btnEl=document.getElementById("btnArea");
-var origD=[themeEl.style.display,calcEl.style.display,btnEl.style.display];
-themeEl.style.display="none";calcEl.style.display="none";btnEl.style.display="none";
-
+var origD=[themeEl.style.display,btnEl.style.display];
+themeEl.style.display="none";btnEl.style.display="none";
 var card=document.getElementById("capture");
 
 html2canvas(card,{backgroundColor:null,scale:2,useCORS:true,allowTaint:true}).then(function(canvas){
-themeEl.style.display=origD[0];calcEl.style.display=origD[1];btnEl.style.display=origD[2];
+themeEl.style.display=origD[0];btnEl.style.display=origD[1];
 
 var t=document.body.className;
 var pt=posterThemes[t]||posterThemes.gold;
@@ -441,7 +423,7 @@ document.body.appendChild(a);a.click();document.body.removeChild(a);
 btn.innerHTML="📸 高清导出";
 btn.disabled=false;
 }).catch(function(e){
-themeEl.style.display=origD[0];calcEl.style.display=origD[1];btnEl.style.display=origD[2];
+themeEl.style.display=origD[0];btnEl.style.display=origD[1];
 alert("失败："+e.message);
 btn.innerHTML="📸 高清导出";
 btn.disabled=false;
