@@ -210,6 +210,170 @@ body.silver #noteList,body.silver #noteList div{color:rgba(255,255,255,0.8);}
 .preview-overlay img{max-width:100%;max-height:90vh;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,0.5);object-fit:contain;}
 .preview-tip{color:#fff;font-size:13px;font-weight:bold;margin:5px 0;text-align:center;}
 .preview-close{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);padding:6px 20px;border-radius:15px;font-size:11px;cursor:pointer;margin-top:3px;}
+/* USDT 产品收益计算器 */
+.product-calculator {
+  margin: 16px 0;
+  padding: 18px 14px;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.product-calculator h3 {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 17px;
+  color: var(--main, #c9a84c);
+}
+
+.product-calculator .calc-field {
+  margin-bottom: 14px;
+}
+
+.product-calculator .calc-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: inherit;
+}
+
+.product-calculator .calc-field input {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(160, 160, 160, 0.4);
+  border-radius: 8px;
+  background: rgba(128, 128, 128, 0.08);
+  color: inherit;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.product-calculator #calcBtn {
+  width: 100%;
+  min-height: 42px;
+  border: none;
+  border-radius: 8px;
+  background: #c9a84c;
+  color: #17120a;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.product-calculator .calc-result {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(128, 128, 128, 0.09);
+  line-height: 2;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.product-calculator .calc-result strong {
+  color: var(--main, #c9a84c);
+}
+
+.product-calculator .calc-tip {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+@media (max-width: 480px) {
+  .product-calculator {
+    padding: 14px 10px;
+  }
+
+  .product-calculator h3 {
+    font-size: 16px;
+  }
+}
+/* 产品计算器：适配所有主题 */
+body.gold {
+  --pc-main: #c9a84c;
+  --pc-text: #ffeeb0;
+  --pc-border: #c9a84c;
+}
+body.jade {
+  --pc-main: #23c997;
+  --pc-text: #d0fff2;
+  --pc-border: #23c997;
+}
+body.blue {
+  --pc-main: #4da3ff;
+  --pc-text: #d8ecff;
+  --pc-border: #4da3ff;
+}
+body.purple {
+  --pc-main: #b46cff;
+  --pc-text: #efd7ff;
+  --pc-border: #b46cff;
+}
+body.black {
+  --pc-main: #fff;
+  --pc-text: #fff;
+  --pc-border: #eee;
+}
+body.rose {
+  --pc-main: #ff8fa3;
+  --pc-text: #ffe0e7;
+  --pc-border: #ff8fa3;
+}
+body.ocean {
+  --pc-main: #20d5ff;
+  --pc-text: #d9f8ff;
+  --pc-border: #20d5ff;
+}
+body.silver {
+  --pc-main: #ddd;
+  --pc-text: #fff;
+  --pc-border: #ddd;
+}
+
+.product-calculator {
+  color: var(--pc-text, #eee);
+  border-color: var(--pc-border, #c9a84c);
+}
+
+.product-calculator h3,
+.product-calculator .calc-result strong {
+  color: var(--pc-main, #c9a84c);
+}
+
+.product-calculator .calc-field input,
+.product-calculator .calc-field select {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--pc-border, #c9a84c);
+  border-radius: 8px;
+  background: #080808;
+  color: var(--pc-text, #fff);
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.product-calculator .calc-field select {
+  display: block;
+  margin-bottom: 0;
+}
+
+.product-calculator .calc-field input:focus,
+.product-calculator .calc-field select:focus {
+  outline: 2px solid var(--pc-main, #c9a84c);
+  outline-offset: 2px;
+}
+
+.product-calculator .calc-field input[readonly] {
+  opacity: 0.9;
+}
 </style>
 </head>
 
@@ -244,6 +408,51 @@ body.silver #noteList,body.silver #noteList div{color:rgba(255,255,255,0.8);}
 <div class="note-box" id="noteBox">
 <div class="note-title">📝 日期备注</div>
 <div id="noteList" style="font-size:12px;line-height:22px;">暂无备注</div>
+</div>
+<div class="product-calculator" id="productCalculator">
+  <h3>💰 USDT 产品收益计算器</h3>
+
+  <div class="calc-field">
+    <label for="calcProduct">选择产品</label>
+  <select id="calcProduct">
+  <option value="product1">节点精选包（每日 0.5%）</option>
+  <option value="product2">新手包（每日 1%）</option>
+  <option value="product3">稳健包（每日 0.8%）</option>
+  <option value="product4">进阶包（每日 0.9%）</option>
+  <option value="product5">进阶II包（每日 1.1%）</option>
+  <option value="custom">其他产品（自定义）</option>
+</select>
+  </div>
+
+  <div class="calc-field" id="customProductField" style="display:none;">
+    <label for="customProductName">产品名称</label>
+    <input id="customProductName" type="text" placeholder="请输入产品名称">
+  </div>
+
+  <div class="calc-field">
+    <label for="calcAmount">参与金额（USDT）</label>
+    <input id="calcAmount" type="number" min="0" step="any" placeholder="请输入参与金额">
+  </div>
+
+  <div class="calc-field">
+    <label for="calcRate">每日收益率（%）</label>
+    <input id="calcRate" type="number" min="0" step="any" placeholder="请设置每日收益率">
+  </div>
+
+  <div class="calc-field">
+    <label for="calcDays">持有天数</label>
+    <input id="calcDays" type="number" min="0" step="1" placeholder="请输入持有天数">
+  </div>
+
+  <button type="button" id="calcBtn">计算收益</button>
+
+  <div class="calc-result">
+  <div>当前产品：<strong id="calcProductName">未选择</strong></div>
+  <div>预估收益：<strong id="calcProfit">0.00 USDT</strong></div>
+  <div>本息合计：<strong id="calcTotal">0.00 USDT</strong></div>
+</div>
+
+  <div class="calc-tip">固定日收益 · 不复利 · 仅供计算参考</div>
 </div>
 <div class="buttons" id="btnArea">
 <button class="export" id="export">📸 高清导出</button>
@@ -430,7 +639,116 @@ btn.disabled=false;
 });
 };
 
-document.getElementById("previewOverlay").onclick=function(e){if(e.target===this)this.style.display="none";};
+var calcProduct = document.getElementById("calcProduct");
+var calcRate = document.getElementById("calcRate");
+var customProductField = document.getElementById("customProductField");
+
+var productRates = {
+  product1: 0.5,
+  product2: 1,
+  product3: 0.8,
+  product4: 0.9,
+  product5: 1.1
+};
+
+calcProduct.addEventListener("change", function () {
+  var selectedProduct = calcProduct.value;
+
+  if (selectedProduct === "custom") {
+    customProductField.style.display = "block";
+    calcRate.value = "";
+    calcRate.readOnly = false;
+  } else {
+    customProductField.style.display = "none";
+    calcRate.value = productRates[selectedProduct];
+    calcRate.readOnly = true;
+  }
+
+  document.getElementById("calcProfit").textContent = "0.00 USDT";
+  document.getElementById("calcTotal").textContent = "0.00 USDT";
+  document.getElementById("calcProductName").textContent =
+    selectedProduct === "custom"
+      ? "自定义产品"
+      : calcProduct.options[calcProduct.selectedIndex].text;
+});
+
+// 页面打开时，自动填入默认产品收益率
+calcRate.value = productRates[calcProduct.value];
+calcRate.readOnly = true;  
+  document.getElementById("calcProductName").textContent =
+  calcProduct.options[calcProduct.selectedIndex].text;
+document.getElementById("calcBtn").addEventListener("click", function () {
+  var amount = Number(document.getElementById("calcAmount").value);
+  var rate = Number(document.getElementById("calcRate").value);
+  var days = Number(document.getElementById("calcDays").value);
+
+  if (
+    document.getElementById("calcAmount").value.trim() === "" ||
+    document.getElementById("calcRate").value.trim() === "" ||
+    document.getElementById("calcDays").value.trim() === "" ||
+    !Number.isFinite(amount) ||
+    !Number.isFinite(rate) ||
+    !Number.isFinite(days) ||
+    amount < 0 ||
+    rate < 0 ||
+    days < 0 ||
+    !Number.isInteger(days)
+  ) {
+    alert("请输入有效的金额、每日收益率和整数天数。");
+    return;
+  }
+
+  var selectedProduct = document.getElementById("calcProduct").value;
+var productName = "";
+
+if (selectedProduct === "custom") {
+  productName =
+    document.getElementById("customProductName").value.trim();
+
+  if (productName === "") {
+    alert("请输入自定义产品名称。");
+    return;
+  }
+} else {
+  productName =
+    document.getElementById("calcProduct")
+      .options[document.getElementById("calcProduct").selectedIndex]
+      .text;
+}
+  var profit = amount * rate / 100 * days;
+  var total = amount + profit;
+
+  document.getElementById("calcProduct").setAttribute(
+  "data-last-product",
+  productName
+);
+  document.getElementById("calcProductName").textContent =
+  productName;
+  document.getElementById("calcProfit").textContent =
+    profit.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + " USDT";
+
+  document.getElementById("calcTotal").textContent =
+    total.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + " USDT";
+});
+
+// 修改金额、收益率或天数时，清除旧的计算结果
+["calcAmount", "calcRate", "calcDays"].forEach(function (id) {
+document.getElementById(id).addEventListener("input", function () {
+document.getElementById("calcProfit").textContent = "0.00 USDT";
+document.getElementById("calcTotal").textContent = "0.00 USDT";
+});
+});
+
+document.getElementById("previewOverlay").onclick = function(e) {
+if (e.target === this) this.style.display = "none";
+};
+
 render();
 </script>
 </body>
