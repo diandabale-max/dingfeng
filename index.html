@@ -546,12 +546,24 @@ btn.disabled=true;
 
 var themeEl=document.getElementById("themeBtns");
 var btnEl=document.getElementById("btnArea");
-var origD=[themeEl.style.display,btnEl.style.display];
-themeEl.style.display="none";btnEl.style.display="none";
+var productCalcEl=document.getElementById("productCalculator");
+
+var origD=[
+  themeEl.style.display,
+  btnEl.style.display,
+  productCalcEl.style.display
+];
+
+themeEl.style.display="none";
+btnEl.style.display="none";
+productCalcEl.style.display="none";
+
 var card=document.getElementById("capture");
 
 html2canvas(card,{backgroundColor:null,scale:2,useCORS:true,allowTaint:true}).then(function(canvas){
-themeEl.style.display=origD[0];btnEl.style.display=origD[1];
+themeEl.style.display=origD[0];
+btnEl.style.display=origD[1];
+productCalcEl.style.display=origD[2];
 
 var t=document.body.className;
 var pt=posterThemes[t]||posterThemes.gold;
@@ -632,10 +644,13 @@ document.body.appendChild(a);a.click();document.body.removeChild(a);
 btn.innerHTML="📸 高清导出";
 btn.disabled=false;
 }).catch(function(e){
-themeEl.style.display=origD[0];btnEl.style.display=origD[1];
-alert("失败："+e.message);
-btn.innerHTML="📸 高清导出";
-btn.disabled=false;
+  themeEl.style.display = origD[0];
+  btnEl.style.display = origD[1];
+  productCalcEl.style.display = origD[2];
+
+   alert("失败：" + e.message);
+  btn.innerHTML = "📸 高清导出";
+  btn.disabled = false;
 });
 };
 
@@ -730,7 +745,7 @@ if (selectedProduct === "custom") {
       maximumFractionDigits: 2
     }) + " USDT";
 
-  document.getElementById("calcTotal").textContent =
+document.getElementById("calcTotal").textContent =
     total.toLocaleString("en-US", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
@@ -739,11 +754,12 @@ if (selectedProduct === "custom") {
 
 // 修改金额、收益率或天数时，清除旧的计算结果
 ["calcAmount", "calcRate", "calcDays"].forEach(function (id) {
-document.getElementById(id).addEventListener("input", function () {
-document.getElementById("calcProfit").textContent = "0.00 USDT";
-document.getElementById("calcTotal").textContent = "0.00 USDT";
+  document.getElementById(id).addEventListener("input", function () {
+    document.getElementById("calcProfit").textContent = "0.00 USDT";
+    document.getElementById("calcTotal").textContent = "0.00 USDT";
+  });
 });
-});
+
 
 document.getElementById("previewOverlay").onclick = function(e) {
 if (e.target === this) this.style.display = "none";
